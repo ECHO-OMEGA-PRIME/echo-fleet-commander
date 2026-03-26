@@ -1,0 +1,269 @@
+name = "echo-fleet-commander"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+# D1 for fleet state, deployments, commands, audit log
+[[d1_databases]]
+binding = "DB"
+database_name = "echo-fleet-commander"
+database_id = "3d2bb239-87e4-47da-9aa4-6d1ae4c1edfc"
+
+# KV for hot cache, session state, fleet snapshots
+[[kv_namespaces]]
+binding = "CACHE"
+id = "cce3fcc589b54b14a477f6241ac0308a"
+
+# ── Core Infrastructure Bindings ──────────────────────────────────────────────
+[[services]]
+binding = "SHARED_BRAIN"
+service = "echo-shared-brain"
+
+[[services]]
+binding = "SWARM_BRAIN"
+service = "echo-swarm-brain"
+
+[[services]]
+binding = "OMNISYNC"
+service = "omniscient-sync"
+
+[[services]]
+binding = "BUILD_ORCHESTRATOR"
+service = "echo-build-orchestrator"
+
+[[services]]
+binding = "DAEMON"
+service = "echo-autonomous-daemon"
+
+# ── Engine & Knowledge Bindings ───────────────────────────────────────────────
+[[services]]
+binding = "ENGINE_RUNTIME"
+service = "echo-engine-runtime"
+
+[[services]]
+binding = "KNOWLEDGE_FORGE"
+service = "echo-knowledge-forge"
+
+[[services]]
+binding = "DOCTRINE_FORGE"
+service = "echo-doctrine-forge"
+
+[[services]]
+binding = "SDK"
+service = "echo-sdk-gateway"
+
+# ── Bot Fleet Bindings ────────────────────────────────────────────────────────
+[[services]]
+binding = "X_BOT"
+service = "echo-x-bot"
+
+[[services]]
+binding = "LINKEDIN"
+service = "echo-linkedin"
+
+[[services]]
+binding = "TELEGRAM"
+service = "echo-telegram"
+
+[[services]]
+binding = "SLACK"
+service = "echo-slack"
+
+[[services]]
+binding = "REDDIT"
+service = "echo-reddit-bot"
+
+# ── Intelligence Bindings ─────────────────────────────────────────────────────
+[[services]]
+binding = "GRAPH_RAG"
+service = "echo-graph-rag"
+
+[[services]]
+binding = "MEMORY_PRIME"
+service = "echo-memory-prime"
+
+[[services]]
+binding = "AI_ORCHESTRATOR"
+service = "echo-ai-orchestrator"
+
+[[services]]
+binding = "QA_TESTER"
+service = "echo-qa-tester"
+
+# ── Utility Bindings ─────────────────────────────────────────────────────────
+[[services]]
+binding = "VAULT_API"
+service = "echo-vault-api"
+
+[[services]]
+binding = "SPEAK_CLOUD"
+service = "echo-speak-cloud"
+
+[[services]]
+binding = "ECHO_CHAT"
+service = "echo-chat"
+
+# ── T2 Feature Workers (previously publicUrl only) ──────────────────────────
+[[services]]
+binding = "LANDMAN_PIPELINE"
+service = "echo-landman-pipeline"
+
+[[services]]
+binding = "HEPHAESTION_FORGE"
+service = "hephaestion-forge"
+
+[[services]]
+binding = "EPT_API"
+service = "ept-api"
+
+[[services]]
+binding = "INSTAGRAM"
+service = "echo-instagram"
+
+[[services]]
+binding = "WHATSAPP"
+service = "echo-whatsapp"
+
+[[services]]
+binding = "MESSENGER"
+service = "echo-messenger"
+
+[[services]]
+binding = "MESSAGING_GATEWAY"
+service = "echo-messaging-gateway"
+
+# ── T3 Scrapers & Peripheral (previously publicUrl only) ────────────────────
+[[services]]
+binding = "DARKWEB_INTEL"
+service = "echo-darkweb-intelligence"
+
+[[services]]
+binding = "NEWS_SCRAPER"
+service = "echo-news-scraper"
+
+[[services]]
+binding = "REDDIT_MONITOR"
+service = "echo-reddit-monitor"
+
+[[services]]
+binding = "PRICE_ALERT"
+service = "echo-price-alerts"
+
+[[services]]
+binding = "SEC_EDGAR"
+service = "echo-sec-scraper"
+
+[[services]]
+binding = "CRYPTO_TRADER"
+service = "echo-crypto-trader"
+
+[[services]]
+binding = "KNOWLEDGE_HARVESTER"
+service = "echo-knowledge-harvester"
+
+[[services]]
+binding = "KNOWLEDGE_SCOUT"
+service = "echo-knowledge-scout"
+
+[[services]]
+binding = "MODEL_HOST"
+service = "echo-model-host"
+
+[[services]]
+binding = "GS343_CLOUD"
+service = "echo-gs343"
+
+[[services]]
+binding = "PHOENIX_CLOUD"
+service = "echo-phoenix-cloud"
+
+[[services]]
+binding = "MEMORY_CORTEX"
+service = "echo-memory-cortex"
+
+[[services]]
+binding = "AGENT_COORDINATOR"
+service = "echo-agent-coordinator"
+
+[[services]]
+binding = "A2A_PROTOCOL"
+service = "echo-a2a-protocol"
+
+[[services]]
+binding = "PAYPAL"
+service = "echo-paypal"
+
+[[services]]
+binding = "OPENCLAW_BRIDGE"
+service = "openclaw-bridge"
+
+# ── Infrastructure Fleet (11 workers from autonomous build) ─────────────────
+[[services]]
+binding = "CONFIG_MANAGER"
+service = "echo-config-manager"
+
+[[services]]
+binding = "ALERT_ROUTER"
+service = "echo-alert-router"
+
+[[services]]
+binding = "LOG_AGGREGATOR"
+service = "echo-log-aggregator"
+
+[[services]]
+binding = "RATE_LIMITER"
+service = "echo-rate-limiter"
+
+[[services]]
+binding = "USAGE_TRACKER"
+service = "echo-usage-tracker"
+
+[[services]]
+binding = "CRON_ORCHESTRATOR"
+service = "echo-cron-orchestrator"
+
+[[services]]
+binding = "API_GATEWAY"
+service = "echo-api-gateway"
+
+[[services]]
+binding = "NOTIFICATION_HUB"
+service = "echo-notification-hub"
+
+[[services]]
+binding = "SECRETS_ROTATOR"
+service = "echo-secrets-rotator"
+
+[[services]]
+binding = "DISTRIBUTED_TRACING"
+service = "echo-distributed-tracing"
+
+[[services]]
+binding = "SERVICE_REGISTRY"
+service = "echo-service-registry"
+
+[[services]]
+binding = "INCIDENT_MANAGER"
+service = "echo-incident-manager"
+
+[[services]]
+binding = "COST_OPTIMIZER"
+service = "echo-cost-optimizer"
+
+[[services]]
+binding = "DEPLOYMENT_COORDINATOR"
+service = "echo-deployment-coordinator"
+
+[[services]]
+binding = "CIRCUIT_BREAKER"
+service = "echo-circuit-breaker"
+
+# Cron triggers — fleet monitoring + reporting
+[triggers]
+crons = [
+  "*/5 * * * *",    # Every 5 min: fleet heartbeat + quick health
+  "0 * * * *",      # Hourly: full fleet scan + metrics aggregation
+  "0 */6 * * *",    # Every 6h: deep analysis + commander briefing
+  "0 9 * * *",      # Daily 9am UTC: morning fleet report
+  "0 0 * * SUN",    # Weekly Sunday: fleet week-in-review
+]
