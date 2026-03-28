@@ -1191,7 +1191,7 @@ async function checkWorkerHealth(worker: WorkerEntry, env: Env, perWorkerTimeout
         return { worker: worker.name, healthy: false, latencyMs: latency, status: `HTTP ${resp.status}`, checkedAt: now };
       }
 
-      const data = await resp.json().catch(() => ({})) as any;
+      const data = await resp.json().catch((e: unknown) => { console.error(JSON.stringify({ ts: new Date().toISOString(), level: 'error', worker: 'echo-fleet-commander', msg: 'health check resp.json() failed', error: String(e) })); return {}; }) as any;
       return {
         worker: worker.name, healthy: true, latencyMs: latency,
         version: data.version || data.v || undefined, status: data.status || 'ok', checkedAt: now,
@@ -1565,7 +1565,7 @@ async function dispatchCommand(env: Env, target: string, command: string, params
           const fetcher = (env as any)[entry.binding] as Fetcher;
           const type = params.type || 'manual';
           const resp = await fetcher.fetch(new Request(`https://internal/cycle?type=${type}`, { method: 'POST' }));
-          result = await resp.json().catch(() => ({ status: resp.status }));
+          result = await resp.json().catch((e: unknown) => { console.error(JSON.stringify({ ts: new Date().toISOString(), level: 'error', worker: 'echo-fleet-commander', msg: 'daemon cycle trigger resp.json() failed', error: String(e) })); return { status: resp.status }; });
         } else {
           result = { error: 'Cycle trigger only supported for daemon' };
           status = 'failed';
@@ -1576,7 +1576,7 @@ async function dispatchCommand(env: Env, target: string, command: string, params
         if (target === 'echo-qa-tester' && entry.binding) {
           const fetcher = (env as any)[entry.binding] as Fetcher;
           const resp = await fetcher.fetch(new Request('https://internal/run', { method: 'POST' }));
-          result = await resp.json().catch(() => ({ status: resp.status }));
+          result = await resp.json().catch((e: unknown) => { console.error(JSON.stringify({ ts: new Date().toISOString(), level: 'error', worker: 'echo-fleet-commander', msg: 'QA test run resp.json() failed', error: String(e) })); return { status: resp.status }; });
         } else {
           result = { error: 'Test trigger only supported for QA tester' };
           status = 'failed';
@@ -1587,13 +1587,13 @@ async function dispatchCommand(env: Env, target: string, command: string, params
         const fetcher = entry.binding ? (env as any)[entry.binding] as Fetcher : null;
         if (fetcher) {
           const resp = await fetcher.fetch(new Request('https://internal/stats'));
-          result = await resp.json().catch(() => ({ status: resp.status }));
+          result = await resp.json().catch((e: unknown) => { console.error(JSON.stringify({ ts: new Date().toISOString(), level: 'error', worker: 'echo-fleet-commander', msg: 'stats fetch via binding resp.json() failed', error: String(e) })); return { status: resp.status }; });
         } else if (entry.publicUrl) {
           const controller = new AbortController();
           const timeout = setTimeout(() => controller.abort(), 8000);
           try {
             const resp = await fetch(`${entry.publicUrl}/stats`, { signal: controller.signal });
-            result = await resp.json().catch(() => ({ status: resp.status }));
+            result = await resp.json().catch((e: unknown) => { console.error(JSON.stringify({ ts: new Date().toISOString(), level: 'error', worker: 'echo-fleet-commander', msg: 'stats fetch via public URL resp.json() failed', error: String(e) })); return { status: resp.status }; });
           } finally { clearTimeout(timeout); }
         }
         break;
@@ -1837,7 +1837,7 @@ async function buildDashboard(env: Env): Promise<Record<string, any>> {
   let daemonStatus: any = null;
   try {
     const resp = await env.DAEMON.fetch(new Request('https://internal/status'));
-    daemonStatus = await resp.json().catch(() => null);
+    daemonStatus = await resp.json().catch((e: unknown) => { console.error(JSON.stringify({ ts: new Date().toISOString(), level: 'error', worker: 'echo-fleet-commander', msg: 'daemon status resp.json() failed', error: String(e) })); return null; });
   } catch { /* daemon might be busy */ }
 
   return {
@@ -1956,7 +1956,7 @@ async function handleRequest(request: Request, env: Env): Promise<Response> {
         // Cache for 60s to prevent hammering
         await env.CACHE.put(cacheKey, JSON.stringify(scanResult), { expirationTtl: 60 });
         // Report heartbeats to service registry on manual scans too
-        reportHeartbeatsToRegistry(env, results).catch(() => {});
+        reportHeartbeatsToRegistry(env, results).catch((e: unknown) => { console.error(JSON.stringify({ ts: new Date().toISOString(), level: 'error', worker: 'echo-fleet-commander', msg: 'registry heartbeat report failed', error: String(e) })); });
         return json(scanResult);
       }
 
@@ -2002,7 +2002,7 @@ async function handleRequest(request: Request, env: Env): Promise<Response> {
 
       case '/incidents/create': {
         if (request.method !== 'POST') return json({ error: 'POST required' }, 405);
-        const body: any = await request.json().catch(() => ({}));
+        const body: any = await request.json().catch((e: unknown) => { console.error(JSON.stringify({ ts: new Date().toISOString(), level: 'error', worker: 'echo-fleet-commander', msg: 'incident create request body parse failed', error: String(e) })); return {}; });
         if (!body.title) return json({ error: 'Missing title' }, 400);
         const id = await createIncident(env, body.title, body.severity || 'medium', body.affectedWorkers || []);
         return json({ id, status: 'created' });
@@ -2010,7 +2010,7 @@ async function handleRequest(request: Request, env: Env): Promise<Response> {
 
       case '/incidents/resolve': {
         if (request.method !== 'POST') return json({ error: 'POST required' }, 405);
-        const body: any = await request.json().catch(() => ({}));
+        const body: any = await request.json().catch((e: unknown) => { console.error(JSON.stringify({ ts: new Date().toISOString(), level: 'error', worker: 'echo-fleet-commander', msg: 'incident resolve request body parse failed', error: String(e) })); return {}; });
         if (!body.id) return json({ error: 'Missing incident id' }, 400);
         await ensureSchema(env.DB);
         await env.DB.prepare(
@@ -2023,7 +2023,7 @@ async function handleRequest(request: Request, env: Env): Promise<Response> {
       // ── Commands ───────────────────────────────────────────────────────────
       case '/command': {
         if (request.method !== 'POST') return json({ error: 'POST required' }, 405);
-        const body: any = await request.json().catch(() => ({}));
+        const body: any = await request.json().catch((e: unknown) => { console.error(JSON.stringify({ ts: new Date().toISOString(), level: 'error', worker: 'echo-fleet-commander', msg: 'command dispatch request body parse failed', error: String(e) })); return {}; });
         if (!body.target || !body.command) return json({ error: 'Missing target or command' }, 400);
         return json(await dispatchCommand(env, body.target, body.command, body.params || {}));
       }
