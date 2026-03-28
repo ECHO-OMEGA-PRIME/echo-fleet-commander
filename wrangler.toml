@@ -262,6 +262,220 @@ service = "echo-deployment-coordinator"
 binding = "CIRCUIT_BREAKER"
 service = "echo-circuit-breaker"
 
+# ── Revenue Products (expanded 2026-03-28) ─────────────────────────────────
+[[services]]
+binding = "CRM"
+service = "echo-crm"
+
+[[services]]
+binding = "HELPDESK"
+service = "echo-helpdesk"
+
+[[services]]
+binding = "BOOKING"
+service = "echo-booking"
+
+[[services]]
+binding = "INVOICE"
+service = "echo-invoice"
+
+[[services]]
+binding = "EMAIL_SENDER"
+service = "echo-email-sender"
+
+[[services]]
+binding = "LIVE_CHAT"
+service = "echo-live-chat"
+
+[[services]]
+binding = "FORMS"
+service = "echo-forms"
+
+[[services]]
+binding = "FINANCE_AI"
+service = "echo-finance-ai"
+
+[[services]]
+binding = "PROJECT_MANAGER"
+service = "echo-project-manager"
+
+[[services]]
+binding = "HR"
+service = "echo-hr"
+
+[[services]]
+binding = "CALL_CENTER"
+service = "echo-call-center"
+
+[[services]]
+binding = "HOME_AI"
+service = "echo-home-ai"
+
+[[services]]
+binding = "SHEPHERD_AI"
+service = "echo-shepherd-ai"
+
+[[services]]
+binding = "INTEL_HUB"
+service = "echo-intel-hub"
+
+[[services]]
+binding = "AUTO_BUILDER"
+service = "echo-autonomous-builder"
+
+[[services]]
+binding = "ARCANUM"
+service = "echo-arcanum"
+
+[[services]]
+binding = "HEALTH_DASHBOARD"
+service = "echo-health-dashboard"
+
+[[services]]
+binding = "BOT_AUDITOR"
+service = "echo-bot-auditor"
+
+[[services]]
+binding = "ANALYTICS_PIPELINE"
+service = "echo-analytics-pipeline"
+
+[[services]]
+binding = "STATUS_PAGE"
+service = "echo-status-page"
+
+[[services]]
+binding = "FLEET_COMMANDER_SELF"
+service = "echo-fleet-commander"
+
+# ── Extended Products (2026-03-28) ─────────────────────────────────────────
+[[services]]
+binding = "SURVEYS"
+service = "echo-surveys"
+
+[[services]]
+binding = "KB"
+service = "echo-knowledge-base"
+
+[[services]]
+binding = "EMAIL_MARKETING"
+service = "echo-email-marketing"
+
+[[services]]
+binding = "LMS"
+service = "echo-lms"
+
+[[services]]
+binding = "CONTRACTS"
+service = "echo-contracts"
+
+[[services]]
+binding = "INVENTORY"
+service = "echo-inventory"
+
+[[services]]
+binding = "WORKFLOW"
+service = "echo-workflow-automation"
+
+[[services]]
+binding = "SOCIAL_MEDIA"
+service = "echo-social-media"
+
+[[services]]
+binding = "DOCUMENT_MANAGER"
+service = "echo-document-manager"
+
+[[services]]
+binding = "LINK_SHORTENER"
+service = "echo-link-shortener"
+
+[[services]]
+binding = "FEEDBACK_BOARD"
+service = "echo-feedback-board"
+
+[[services]]
+binding = "NEWSLETTER"
+service = "echo-newsletter"
+
+[[services]]
+binding = "WEB_ANALYTICS"
+service = "echo-web-analytics"
+
+[[services]]
+binding = "WAITLIST"
+service = "echo-waitlist"
+
+[[services]]
+binding = "REVIEWS"
+service = "echo-reviews"
+
+[[services]]
+binding = "PROPOSALS"
+service = "echo-proposals"
+
+[[services]]
+binding = "AFFILIATE"
+service = "echo-affiliate"
+
+[[services]]
+binding = "SIGNATURES"
+service = "echo-signatures"
+
+[[services]]
+binding = "QR_MENU"
+service = "echo-qr-menu"
+
+[[services]]
+binding = "PODCAST"
+service = "echo-podcast"
+
+[[services]]
+binding = "PAYROLL"
+service = "echo-payroll"
+
+[[services]]
+binding = "CALENDAR"
+service = "echo-calendar"
+
+[[services]]
+binding = "COMPLIANCE"
+service = "echo-compliance"
+
+[[services]]
+binding = "RECRUITING"
+service = "echo-recruiting"
+
+[[services]]
+binding = "TIMESHEET"
+service = "echo-timesheet"
+
+[[services]]
+binding = "FEATURE_FLAGS"
+service = "echo-feature-flags"
+
+[[services]]
+binding = "EXPENSE"
+service = "echo-expense"
+
+[[services]]
+binding = "OKR"
+service = "echo-okr"
+
+[[services]]
+binding = "GAMER"
+service = "echo-gamer-companion"
+
+[[services]]
+binding = "ANALYTICS_ENGINE"
+service = "echo-analytics-engine"
+
+[[services]]
+binding = "REPORT_GEN"
+service = "echo-report-generator"
+
+[[services]]
+binding = "DIAGNOSTICS"
+service = "echo-diagnostics-agent"
+
 # Cron triggers — fleet monitoring + reporting
 [triggers]
 crons = [

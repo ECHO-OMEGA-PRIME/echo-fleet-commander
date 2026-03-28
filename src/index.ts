@@ -77,6 +77,65 @@ interface Env {
   SECRETS_ROTATOR: Fetcher;
   DISTRIBUTED_TRACING: Fetcher;
   SERVICE_REGISTRY: Fetcher;
+  INCIDENT_MANAGER: Fetcher;
+  COST_OPTIMIZER: Fetcher;
+  DEPLOYMENT_COORDINATOR: Fetcher;
+  CIRCUIT_BREAKER: Fetcher;
+  // Revenue Products (expanded 2026-03-28)
+  CRM: Fetcher;
+  HELPDESK: Fetcher;
+  BOOKING: Fetcher;
+  INVOICE: Fetcher;
+  EMAIL_SENDER: Fetcher;
+  LIVE_CHAT: Fetcher;
+  FORMS: Fetcher;
+  FINANCE_AI: Fetcher;
+  PROJECT_MANAGER: Fetcher;
+  HR: Fetcher;
+  CALL_CENTER: Fetcher;
+  HOME_AI: Fetcher;
+  SHEPHERD_AI: Fetcher;
+  INTEL_HUB: Fetcher;
+  AUTO_BUILDER: Fetcher;
+  ARCANUM: Fetcher;
+  HEALTH_DASHBOARD: Fetcher;
+  BOT_AUDITOR: Fetcher;
+  ANALYTICS_PIPELINE: Fetcher;
+  STATUS_PAGE: Fetcher;
+  FLEET_COMMANDER_SELF: Fetcher;
+  // Extended Products (2026-03-28)
+  SURVEYS: Fetcher;
+  KB: Fetcher;
+  EMAIL_MARKETING: Fetcher;
+  LMS: Fetcher;
+  CONTRACTS: Fetcher;
+  INVENTORY: Fetcher;
+  WORKFLOW: Fetcher;
+  SOCIAL_MEDIA: Fetcher;
+  DOCUMENT_MANAGER: Fetcher;
+  LINK_SHORTENER: Fetcher;
+  FEEDBACK_BOARD: Fetcher;
+  NEWSLETTER: Fetcher;
+  WEB_ANALYTICS: Fetcher;
+  WAITLIST: Fetcher;
+  REVIEWS: Fetcher;
+  PROPOSALS: Fetcher;
+  AFFILIATE: Fetcher;
+  SIGNATURES: Fetcher;
+  QR_MENU: Fetcher;
+  PODCAST: Fetcher;
+  PAYROLL: Fetcher;
+  CALENDAR: Fetcher;
+  COMPLIANCE: Fetcher;
+  RECRUITING: Fetcher;
+  TIMESHEET: Fetcher;
+  FEATURE_FLAGS: Fetcher;
+  EXPENSE: Fetcher;
+  OKR: Fetcher;
+  GAMER: Fetcher;
+  ANALYTICS_ENGINE: Fetcher;
+  REPORT_GEN: Fetcher;
+  DIAGNOSTICS: Fetcher;
   // Auth
   ECHO_API_KEY: string;
 }
@@ -552,6 +611,413 @@ const FLEET_REGISTRY: WorkerEntry[] = [
     secrets: ['ECHO_API_KEY'], crons: [],
     description: 'Multi-platform messaging gateway — Telegram+WhatsApp+Messenger',
     tier: 'T2',
+  },
+
+  // ── Infrastructure Fleet (wrangler-bound, previously missing from registry) ─
+  {
+    name: 'echo-incident-manager', binding: 'INCIDENT_MANAGER', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Incident tracking — severity tiers, timeline, resolution workflow',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-cost-optimizer', binding: 'COST_OPTIMIZER', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Cost optimization — resource analysis, waste detection, budget tracking',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-deployment-coordinator', binding: 'DEPLOYMENT_COORDINATOR', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Deployment coordination — canary, rollback, blue-green orchestration',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-circuit-breaker', binding: 'CIRCUIT_BREAKER', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Circuit breaker — failure detection, automatic service isolation',
+    tier: 'T2',
+  },
+
+  // ── Revenue Products (expanded 2026-03-28) ────────────────────────────────
+  {
+    name: 'echo-crm', binding: 'CRM', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'CRM — contact management, pipeline tracking, deal stages',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-helpdesk', binding: 'HELPDESK', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Helpdesk — ticket management, SLA tracking, knowledge base integration',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-booking', binding: 'BOOKING', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Booking — appointment scheduling, availability management, reminders',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-invoice', binding: 'INVOICE', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Invoicing — invoice generation, payment tracking, recurring billing',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-email-sender', binding: 'EMAIL_SENDER', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Email sender — transactional email, templates, delivery tracking',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-live-chat', binding: 'LIVE_CHAT', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Live chat — real-time customer support widget, agent routing',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-forms', binding: 'FORMS', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Forms — dynamic form builder, submissions, conditional logic',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-finance-ai', binding: 'FINANCE_AI', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Finance AI — financial analysis, forecasting, cash flow intelligence',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-project-manager', binding: 'PROJECT_MANAGER', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Project manager — task boards, milestones, team collaboration',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-hr', binding: 'HR', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'HR management — employee records, onboarding, leave tracking',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-call-center', binding: 'CALL_CENTER', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Call center — IVR, call routing, agent dashboard, recording',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-home-ai', binding: 'HOME_AI', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Home AI — smart home control, device management, automation rules',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-shepherd-ai', binding: 'SHEPHERD_AI', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Shepherd AI — user onboarding, guided tours, feature adoption',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-intel-hub', binding: 'INTEL_HUB', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Intel hub — competitive intelligence, market signals, trend analysis',
+    tier: 'T2',
+  },
+
+  // ── Infrastructure (expanded 2026-03-28) ──────────────────────────────────
+  {
+    name: 'echo-autonomous-builder', binding: 'AUTO_BUILDER', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Autonomous builder — self-constructing Worker pipeline, code generation',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-arcanum', binding: 'ARCANUM', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Arcanum — 194 sovereign templates, prompt library, build plan search',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-health-dashboard', binding: 'HEALTH_DASHBOARD', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Health dashboard — unified monitoring UI, service status aggregation',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-bot-auditor', binding: 'BOT_AUDITOR', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Bot auditor — bot fleet compliance, posting quality, engagement metrics',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-analytics-pipeline', binding: 'ANALYTICS_PIPELINE', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Analytics pipeline — event ingestion, aggregation, dashboard data',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-status-page', binding: 'STATUS_PAGE', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Status page — public service status, uptime display, incident feed',
+    tier: 'T2',
+  },
+  {
+    name: 'echo-fleet-commander', binding: 'FLEET_COMMANDER_SELF', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: ['*/5 * * * *', '0 * * * *', '0 */6 * * *', '0 9 * * *', '0 0 * * SUN'],
+    description: 'Fleet commander — self-reference for recursive health monitoring',
+    tier: 'T2',
+  },
+
+  // ── Extended Products (2026-03-28, T3) ────────────────────────────────────
+  {
+    name: 'echo-surveys', binding: 'SURVEYS', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Surveys — customer feedback, NPS, form-based data collection',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-knowledge-base', binding: 'KB', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Knowledge base — self-service articles, search, category management',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-email-marketing', binding: 'EMAIL_MARKETING', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Email marketing — campaigns, drip sequences, list management',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-lms', binding: 'LMS', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'LMS — learning management, courses, progress tracking, quizzes',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-contracts', binding: 'CONTRACTS', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Contracts — contract generation, e-signature, version tracking',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-inventory', binding: 'INVENTORY', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Inventory — stock management, SKU tracking, reorder alerts',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-workflow-automation', binding: 'WORKFLOW', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Workflow automation — trigger-action chains, conditional logic, integrations',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-social-media', binding: 'SOCIAL_MEDIA', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Social media — multi-platform scheduling, analytics, content calendar',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-document-manager', binding: 'DOCUMENT_MANAGER', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Document manager — file storage, versioning, access control, sharing',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-link-shortener', binding: 'LINK_SHORTENER', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Link shortener — vanity URLs, click tracking, QR code generation',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-feedback-board', binding: 'FEEDBACK_BOARD', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Feedback board — feature requests, upvoting, public roadmap',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-newsletter', binding: 'NEWSLETTER', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Newsletter — subscriber management, scheduled sends, open tracking',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-web-analytics', binding: 'WEB_ANALYTICS', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Web analytics — page views, sessions, funnels, privacy-first tracking',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-waitlist', binding: 'WAITLIST', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Waitlist — launch signups, referral tracking, invite management',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-reviews', binding: 'REVIEWS', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Reviews — customer reviews, ratings, sentiment analysis, moderation',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-proposals', binding: 'PROPOSALS', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Proposals — proposal builder, templates, e-sign, client portal',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-affiliate', binding: 'AFFILIATE', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Affiliate — partner tracking, commission management, payout automation',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-signatures', binding: 'SIGNATURES', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Signatures — e-signature collection, document workflow, audit trail',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-qr-menu', binding: 'QR_MENU', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'QR menu — digital menus, contactless ordering, restaurant management',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-podcast', binding: 'PODCAST', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Podcast — RSS feed generation, episode management, analytics',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-payroll', binding: 'PAYROLL', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Payroll — salary calculation, tax withholding, pay stub generation',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-calendar', binding: 'CALENDAR', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Calendar — event scheduling, availability sharing, team coordination',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-compliance', binding: 'COMPLIANCE', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Compliance — regulatory checks, policy management, audit preparation',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-recruiting', binding: 'RECRUITING', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Recruiting — job postings, applicant tracking, interview scheduling',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-timesheet', binding: 'TIMESHEET', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Timesheet — time tracking, project hours, billing integration',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-feature-flags', binding: 'FEATURE_FLAGS', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Feature flags — gradual rollout, A/B testing, kill switches',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-expense', binding: 'EXPENSE', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Expense — receipt capture, expense reports, approval workflows',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-okr', binding: 'OKR', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'OKR — objectives and key results, goal alignment, progress tracking',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-gamer-companion', binding: 'GAMER', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Gamer companion — game strategy, stat tracking, community features',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-analytics-engine', binding: 'ANALYTICS_ENGINE', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Analytics engine — custom metrics, dashboards, data visualization',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-report-generator', binding: 'REPORT_GEN', healthPath: '/health',
+    category: 'product', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Report generator — automated reports, PDF export, scheduled delivery',
+    tier: 'T3',
+  },
+  {
+    name: 'echo-diagnostics-agent', binding: 'DIAGNOSTICS', healthPath: '/health',
+    category: 'infra', critical: false, dependsOn: [],
+    secrets: ['ECHO_API_KEY'], crons: [],
+    description: 'Diagnostics agent — deep health analysis, root cause detection, remediation',
+    tier: 'T3',
   },
 ];
 
